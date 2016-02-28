@@ -1,12 +1,14 @@
-### Game Board Test
+# Game Board Test
 This is a simple test for browser ui interaction with a ui event handler, state controller, and graphics drawer
 
-### Run it
+## Run it
 Expects chromium
-```
+```javascript
 npm install
 npm start
 ```
 
-### Test it
+## Test it
+```javascript
 npm test
+```
