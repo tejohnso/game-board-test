@@ -1,0 +1,14 @@
+{
+  "name": "game-board-test",
+  "version": "1.0.0",
+  "description": "Test of UI interaction with redraw on state change",
+  "scripts": {
+    "test": "mocha test",
+    "start": "browserify app/app.js >browserified.js && chromium app.html"
+  },
+  "author": "Tyler Johnson <mail@tyler-johnson.ca> (http://github.com/tejohnso)",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^13.0.0"
+  }
+}
