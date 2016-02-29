@@ -1,12 +1,9 @@
 canvas = document.createElement("canvas");
-canvas.width = 300;
-canvas.height = 300;
 ctx = canvas.getContext("2d");
 
 function drawBoard(state) {
-  console.log(JSON.stringify(state));
   ctx.fillStyle = "#DDDDDD";
-  ctx.fillRect(0, 0, 300, 300);
+  ctx.fillRect(0, 0, state.length * 100, state.length * 100);
   ctx.fillStyle = "#AAAAAA";
   
   state.forEach((row, rowIdx)=>{
@@ -18,15 +15,16 @@ function drawBoard(state) {
   });
 }
 
-function reset() {
-  ctx.clearRect(0, 0, 300, 300);
-}
-
 module.exports = {
-  setup(clickHandler, gamestate) {
+  setup(clickHandler, gamestate, size) {
+    if (!Number.isInteger(size)) {size = 3;}
+    if (size < 2) {size = 3;}
+
+    canvas.width = size * 100;
+    canvas.height = size * 100;
     canvas.addEventListener("click", clickHandler.getHandler(gamestate));
     gamestate.observe(drawBoard);
-    gamestate.resetState();
+    gamestate.initializeState(size);
     return canvas;
   }
 };

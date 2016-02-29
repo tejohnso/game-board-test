@@ -1,4 +1,4 @@
-var state = initialState(),
+var state,
 observers = [];
 
 function updateObservers() {
@@ -7,22 +7,27 @@ function updateObservers() {
   });
 }
 
-function initialState() {
-  return [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-}
-
 module.exports = {
   activateSquare(coord) {
     if (!coord) {return;}
 
     state[coord[0]][coord[1]] = 1;
-    if (module.exports.checkFull()) {state = initialState();}
+    if (module.exports.checkFull()) {
+      module.exports.initializeState(state.length);
+    } else {
+      updateObservers();
+    }
 
-    updateObservers();
     return state;
   },
-  resetState() {
-    state = initialState();
+  initializeState(size) {
+    if (!Number.isInteger(size)) {size = 3;}
+    if (size < 2) {size = 3;}
+
+    state = Array(size).fill(" ").map((row)=>{
+      return Array(size).fill(0);
+    });
+
     updateObservers();
   },
   observe(cb) {

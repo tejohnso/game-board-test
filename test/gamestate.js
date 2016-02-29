@@ -3,7 +3,7 @@ gamestate = require("../app/gamestate.js");
 
 describe("Gamestate", ()=>{
   beforeEach(()=>{
-    gamestate.resetState();
+    gamestate.initializeState();
   });
 
   it("exists", ()=>{
@@ -27,7 +27,7 @@ describe("Gamestate", ()=>{
       gamestate.observe((state)=>{
         if (state) {res();}
       });
-      gamestate.resetState();
+      gamestate.activateSquare([1, 1]);
     });
   });
 
