@@ -1,6 +1,4 @@
 {
   "esversion": 6,
-  "globals": {
-
-  }
+  "expr": true
 }
