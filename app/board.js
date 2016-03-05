@@ -1,11 +1,6 @@
 var canvas = document.createElement("canvas"),
 ctx = canvas.getContext("2d");
 
-const minimums = {
-  board: 3,
-  square: 5
-};
-
 function drawBoard(pixelsPerSquare, state) {
   var boardSideLength = state.length * pixelsPerSquare;
 
@@ -25,20 +20,10 @@ function drawBoard(pixelsPerSquare, state) {
   });
 }
 
-function validateOptions(options) {
-  Object.keys(options).forEach((key)=>{
-    options[key] = parseInt(options[key]);
-    (Number.isInteger(options[key])) || (options[key] = minimums[key]);
-    (options[key] >= minimums[key]) || (options[key] = minimums[key]);
-  });
-  return options;
-}
-
 module.exports = {
-  setup(clickHandler, gamestate, sizeOptions) {
-    sizeOptions = validateOptions(sizeOptions);
-    pixelsPerSquare = sizeOptions.square;
-    boardSize = sizeOptions.board;
+  setup(clickHandler, gamestate, gameOptions) {
+    pixelsPerSquare = gameOptions.squareSize;
+    boardSize = gameOptions.boardSize;
 
     canvas.width = boardSize * pixelsPerSquare;
     canvas.height = boardSize * pixelsPerSquare;
