@@ -12,3 +12,8 @@ npm start
 ```javascript
 npm test
 ```
+
+## Check coverage
+```javascript
+npm run coverage
+```

@@ -6,6 +6,10 @@ describe("Game State", ()=>{
     gamestate.initializeState(3);
   });
 
+  it("does nothing if no square is passed", ()=>{
+    assert.equal(gamestate.activateSquare(), undefined);
+  });
+
   it("adds a selection to the top row, leftmost column", ()=>{
     assert.deepEqual(gamestate.activateSquare([0, 0]), [[1, 0, 0], [0, 0, 0], [0, 0, 0]]);
   });

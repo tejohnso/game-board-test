@@ -4,7 +4,8 @@
   "description": "Test of UI interaction with redraw on state change",
   "scripts": {
     "test": "mocha test",
-    "start": "browserify app/app.js > app-browserified.js && chromium app.html"
+    "start": "browserify app/app.js > app-browserified.js && chromium app.html",
+    "coverage": "istanbul cover _mocha -- test/**/*"
   },
   "author": "Tyler Johnson <mail@tyler-johnson.ca> (http://github.com/tejohnso)",
   "license": "ISC",

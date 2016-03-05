@@ -1,6 +1,6 @@
 module.exports = {
   resolveCoords(e, pixelsPerSquare) {
-    if (!Number.isInteger(pixelsPerSquare)) {pixelsPerSquare = 100;}
+    (Number.isInteger(pixelsPerSquare)) || (pixelsPerSquare = 100);
     return [getSquare(e.offsetY), getSquare(e.offsetX)];
 
     function getSquare(offset) {
@@ -9,7 +9,8 @@ module.exports = {
   },
   getHandler(stateController, pixelsPerSquare) {
     return function(e) {
-      stateController.activateSquare(module.exports.resolveCoords(e, pixelsPerSquare));
+      stateController.activateSquare
+      (module.exports.resolveCoords(e, pixelsPerSquare));
     };
   }
 };

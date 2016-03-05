@@ -32,4 +32,16 @@ describe("Click Handler", ()=>{
 
     assert.deepEqual(handler.resolveCoords(event), [2, 1]);
   });
+
+  it("returns a handler function to attach to click events", ()=>{
+    assert.ok(typeof handler.getHandler(), "function");
+  });
+
+  it("handles a click event by requesting a state update", ()=>{
+    var activated = false,
+    stateController = {activateSquare() {activated = true;}};
+
+    handler.getHandler(stateController)(event);
+    assert.ok(activated);
+  });
 });
