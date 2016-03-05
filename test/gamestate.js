@@ -1,13 +1,9 @@
 const assert = require("assert"),
 gamestate = require("../app/gamestate.js");
 
-describe("Gamestate", ()=>{
+describe("Game State", ()=>{
   beforeEach(()=>{
     gamestate.initializeState(3);
-  });
-
-  it("exists", ()=>{
-    assert.ok(gamestate);
   });
 
   it("adds a selection to the top row, leftmost column", ()=>{

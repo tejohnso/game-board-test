@@ -1,5 +1,5 @@
 const assert = require("assert"),
-handler = require("../app/clickHandler.js");
+handler = require("../app/clickhandler.js");
 
 var event; 
 
@@ -10,10 +10,6 @@ describe("Click Handler", ()=>{
       offsetY: 0,
       currentTarget: null,
     };
-  });
-
-  it("exists", ()=>{
-    assert.ok(handler);
   });
 
   it("converts a click to the top left grid point", ()=>{
