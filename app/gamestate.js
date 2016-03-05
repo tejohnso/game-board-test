@@ -21,9 +21,6 @@ module.exports = {
     return state;
   },
   initializeState(size) {
-    if (!Number.isInteger(size)) {size = 3;}
-    if (size < 2) {size = 3;}
-
     state = Array(size).fill(" ").map((row)=>{
       return Array(size).fill(0);
     });

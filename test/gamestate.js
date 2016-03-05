@@ -3,7 +3,7 @@ gamestate = require("../app/gamestate.js");
 
 describe("Gamestate", ()=>{
   beforeEach(()=>{
-    gamestate.initializeState();
+    gamestate.initializeState(3);
   });
 
   it("exists", ()=>{
