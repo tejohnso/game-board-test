@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "browserify": "^13.0.0"
+  },
+  "dependencies": {
+    "florash": "https://github.com/AKRFranko/florash.git"
   }
 }
