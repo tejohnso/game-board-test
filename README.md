@@ -1,8 +1,8 @@
 # Game Board Test
-This is a simple test for browser ui interaction with a ui event handler, state controller, and graphics drawer
+This is a tile memory game with a ui event handler, state controller, and graphics drawer.
 
 ## Run it
-Expects [chromium](https://www.chromium.org/getting-involved/download-chromium) is available
+Expects [chromium](https://www.chromium.org/getting-involved/download-chromium) and  [browserify](http://browserify.org/#install) to be available.
 ```javascript
 npm install
 npm start
