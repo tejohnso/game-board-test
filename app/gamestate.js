@@ -1,9 +1,7 @@
-const imageData = require("./imagedata.js");
-
-var state,
-wins = 0,
+var wins = 0,
 lastSelection = {id: 0, coords: [0, 0]},
-observers = [];
+observers = [],
+state;
 
 function updateObservers() {
   observers.forEach((observer)=>{
@@ -31,7 +29,8 @@ module.exports = {
       if (square.id === lastSelection.id) {
         square.matched = true;
         state[lastSelection.coords[0]][lastSelection.coords[1]].matched = true;
-      } else {
+        state[lastSelection.coords[0]][lastSelection.coords[1]].hidden = false;
+      } else if (!state[lastSelection.coords[0]][lastSelection.coords[1]].matched) {
         state[lastSelection.coords[0]][lastSelection.coords[1]].hidden = true;
       }
     }
@@ -41,31 +40,23 @@ module.exports = {
 
     if (module.exports.checkFull()) {
       wins += 1;
-      module.exports.initializeState(state.length, imageData.sizeOfImages());
-    } else {
-      updateObservers();
     }
 
+    updateObservers();
     return state;
   },
-  initializeState(boardSize, squareSize) {
-    var squares = boardSize * boardSize, 
-    images = imageData.createImages(Math.ceil(squares / 2), squareSize),
-    squareState = {hidden: true, id: 0, data: 0},
-    squareStateRepeater = [
-      function newSquareState() {
-        squareState = {hidden: true, id: Math.random(), data: images.pop()};
-        return Object.assign({}, squareState);
-      },
-      function repeatSquareState() {
-        return Object.assign({}, squareState);
-      }
-    ];
+  initializeState(boardSize) {
+    var id = 0; 
 
-    function setState() {
-      var fn = squareStateRepeater.shift();
-      squareStateRepeater.push(fn);
-      return fn();
+    function getId() {
+      if (id) {
+        ret = id;
+        id = 0;
+        return ret;
+      } else {
+        id = String(Math.random()).concat(Math.random());
+        return id;
+      }
     }
 
     function shuffleState(state) {
@@ -82,18 +73,17 @@ module.exports = {
     }
 
     state = Array(boardSize).fill(" ").map((row)=>{
-      var id = Math.random();
       return Array(boardSize).fill(" ").map((col)=>{
-        return setState();
+        return {hidden: true, id: getId()};
       });
     });
 
-    shuffleState(state);
-
-    if (squares % 2 !== 0) {
-      state[0][0].matched = true;
-      state[0][0].hidden = false;
+    if (boardSize % 2 !== 0) {
+      state[boardSize - 1][boardSize - 1].matched = true;
+      state[boardSize - 1][boardSize - 1].hidden = false;
     }
+
+    shuffleState(state);
 
     updateObservers();
     return state;

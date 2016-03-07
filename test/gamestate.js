@@ -63,10 +63,13 @@ describe("Game State", ()=>{
     });
   });
 
-  it("selects first square for odd number of squares", ()=>{
+  it("reveals unmatched square for odd number of squares", ()=>{
     var state = gamestate.initializeState(3, 3);
-    assert.ok(!state[0][0].hidden);
-    assert.ok(state[0][0].matched);
+    assert.ok(state.some((row)=>{
+      return row.some((tileState)=>{
+        return tileState.matched && !tileState.hidden;
+      });
+    }));
   });
 
   it("resets state on fully matched board", ()=>{
