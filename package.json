@@ -9,9 +9,6 @@
   },
   "author": "Tyler Johnson <mail@tyler-johnson.ca> (http://github.com/tejohnso)",
   "license": "ISC",
-  "devDependencies": {
-    "browserify": "^13.0.0"
-  },
   "dependencies": {
     "florash": "https://gitlab.com/tyler.johnson/florash.git"
   }
